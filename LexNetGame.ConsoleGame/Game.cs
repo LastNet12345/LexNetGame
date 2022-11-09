@@ -2,6 +2,9 @@
 
 internal class Game
 {
+    private Map map;
+    private Hero hero;
+
     public Game()
     {
     }
@@ -14,12 +17,23 @@ internal class Game
 
     private void Play()
     {
+        //DrawMap
+
+        //GetCommand
+
+        //Act
+
+        //DrawMap
+
+        //EnemyAction
+
+        //DrawMap
         
     }
 
     private void Initialize()
     {
-        var map = new Map(width: 10,height: 10);
-        var hero = new Hero();
+        map = new Map(width: 10,height: 10);
+        hero = new Hero();
     }
 }
