@@ -1,2 +1,6 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿
+var game = new Game();
+game.Run();
+
+Console.WriteLine("Thanks for playing");
+Console.ReadLine();
