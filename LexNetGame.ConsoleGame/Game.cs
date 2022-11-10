@@ -2,8 +2,8 @@
 
 internal class Game
 {
-    private Map map;
-    private Hero hero;
+    private Map map = null!;
+    private Hero hero = null!;
 
     public Game()
     {
@@ -17,23 +17,52 @@ internal class Game
 
     private void Play()
     {
-        //DrawMap
+        bool gameInProgress = true;
 
-        //GetCommand
+        do
+        {
+            //DrawMap
+            DrawMap();
 
-        //Act
+            //GetCommand
 
-        //DrawMap
+            //Act
 
-        //EnemyAction
+            //DrawMap
 
-        //DrawMap
-        
+            //EnemyAction
+
+            //DrawMap
+
+            Console.ReadKey();
+
+        } while (gameInProgress);
+
+    }
+
+    private void DrawMap()
+    {
+           Console.Clear();
+
+        for (int y = 0; y < map.Height; y++)
+        {
+            for (int x = 0; x < map.Width; x++)
+            {
+                Cell? cell = map.GetCell(y, x);
+                //ToDo Exception if null
+                Console.ForegroundColor = cell?.Color ?? ConsoleColor.White;
+                Console.Write(cell?.Symbol);
+            }
+            Console.WriteLine();
+        }
+
+        Console.ForegroundColor = ConsoleColor.White;
     }
 
     private void Initialize()
     {
-        map = new Map(width: 10,height: 10);
+        //ToDo read from config
+        map = new Map(width: 10, height: 10);
         hero = new Hero();
     }
 }

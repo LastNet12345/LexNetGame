@@ -1,4 +1,7 @@
-﻿internal class Map
+﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+
+internal class Map
 {
     private Cell[,] cells;
     public int Width {get;}
@@ -19,5 +22,20 @@
             }
         }
        
+    }
+
+    [return: MaybeNull]
+    internal Cell GetCell(int y, int x)
+    {
+        //ToDo Fix!
+        try
+        {
+            return cells[y, x];
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+            return null;
+        }
     }
 }
