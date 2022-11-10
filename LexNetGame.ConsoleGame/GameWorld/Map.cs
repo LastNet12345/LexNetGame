@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-
+﻿
 internal class Map
 {
     private Cell[,] cells;
@@ -19,7 +17,7 @@ internal class Map
         {
             for (int x = 0; x < Width; x++)
             {
-                cells[y, x] = new Cell(y, x);
+                cells[y, x] = new Cell(new Position(y, x));
             }
         }
        
@@ -29,5 +27,10 @@ internal class Map
     internal Cell GetCell(int y, int x)
     {
         return (x < 0 || x >= Width || y < 0 || y >= Height) ? null : cells[y, x];
+    }
+
+    internal Cell? GetCell(Position newPosition)
+    {
+        return GetCell(newPosition.Y, newPosition.X);
     }
 }
