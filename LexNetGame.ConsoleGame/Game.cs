@@ -1,5 +1,4 @@
-﻿using LexNetGame.ConsoleGame.UserInterface;
-using System.Data;
+﻿
 
 internal class Game
 {
@@ -75,17 +74,20 @@ internal class Game
         {
             for (int x = 0; x < map.Width; x++)
             {
-                IDrawable? drawable = map.GetCell(y, x);
-                ArgumentNullException.ThrowIfNull(drawable, nameof(drawable));
+                Cell? cell = map.GetCell(y, x);
+                ArgumentNullException.ThrowIfNull(cell, nameof(cell));
+                IDrawable drawable = cell;
 
-                foreach (var creature in map.Creatures)
-                {
-                    if(creature.Cell == drawable)
-                    {
-                        drawable = creature;
-                        break;
-                    }
-                }
+                drawable = map.Creatures.CreataureAtExtension(cell);
+
+                //foreach (var creature in map.Creatures)
+                //{
+                //    if(creature.Cell == drawable)
+                //    {
+                //        drawable = creature;
+                //        break;
+                //    }
+                //}
 
                 Console.ForegroundColor = drawable.Color;
                 Console.Write(drawable.Symbol);
