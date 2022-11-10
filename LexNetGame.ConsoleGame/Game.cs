@@ -48,10 +48,20 @@ internal class Game
         {
             for (int x = 0; x < map.Width; x++)
             {
-                Cell? cell = map.GetCell(y, x);
-                //ToDo Exception if null
-                Console.ForegroundColor = cell?.Color ?? ConsoleColor.White;
-                Console.Write(cell?.Symbol);
+                IDrawable? drawable = map.GetCell(y, x);
+                ArgumentNullException.ThrowIfNull(drawable, nameof(drawable));
+
+                foreach (var creature in map.Creatures)
+                {
+                    if(creature.Cell == drawable)
+                    {
+                        drawable = creature;
+                        break;
+                    }
+                }
+
+                Console.ForegroundColor = drawable.Color;
+                Console.Write(drawable.Symbol);
             }
             Console.WriteLine();
         }

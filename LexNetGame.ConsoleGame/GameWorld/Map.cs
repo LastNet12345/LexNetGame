@@ -28,15 +28,6 @@ internal class Map
     [return: MaybeNull]
     internal Cell GetCell(int y, int x)
     {
-        //ToDo Fix!
-        try
-        {
-            return cells[y, x];
-        }
-        catch (Exception ex)
-        {
-            Debug.WriteLine(ex.Message);
-            return null;
-        }
+        return (x < 0 || x >= Width || y < 0 || y >= Height) ? null : cells[y, x];
     }
 }
