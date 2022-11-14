@@ -24,7 +24,7 @@ namespace LexNetGame.ConsoleGame.UserInterface
                     ArgumentNullException.ThrowIfNull(cell, nameof(cell));
                     IDrawable drawable = cell;
 
-                    drawable = map.Creatures.CreataureAtExtension(cell);
+                    drawable = map.Creatures.CreataureAtExtension2(cell) ?? cell.Items.FirstOrDefault() as IDrawable ?? cell;
 
                     Console.ForegroundColor = drawable.Color;
                     Console.Write(drawable.Symbol);
