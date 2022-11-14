@@ -1,4 +1,4 @@
-﻿namespace LimitedList
+﻿namespace LexNetGame.LimitedList
 {
     public class LimitedList<T>
     {
@@ -8,6 +8,18 @@
         public int Count => list.Count;
 
         public bool IsFull => capacity <= Count;
+
+        public T this[int index] => list[index];
+        //{
+        //    get => list[index];
+        //}
+        //{
+        //    get
+        //    {
+        //        return list[index];
+        //    }
+        //    set => list[index] = value;
+        //}
 
         public LimitedList(int capacity)
         {
@@ -19,7 +31,7 @@
         {
             ArgumentNullException.ThrowIfNull(item, nameof(item));
 
-            if(IsFull) return false;
+            if (IsFull) return false;
             list.Add(item); return true;
         }
 

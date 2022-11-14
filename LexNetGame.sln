@@ -5,7 +5,7 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LexNetGame.ConsoleGame", "LexNetGame.ConsoleGame\LexNetGame.ConsoleGame.csproj", "{663F0476-A2D5-4744-8F84-98E5D2C59F65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LimitedList", "LimitedList\LimitedList.csproj", "{AEC3CE72-E635-42E9-8B11-70C5C92317BC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LexNetGame.ConsoleGame", "LexNetGame.LimitedList\LexNetGame.LimitedList.csproj", "{AEC3CE72-E635-42E9-8B11-70C5C92317BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
