@@ -1,6 +1,8 @@
-﻿namespace LexNetGame.LimitedList
+﻿using System.Collections;
+
+namespace LexNetGame.LimitedList
 {
-    public class LimitedList<T>
+    public class LimitedList<T> : IEnumerable<T> 
     {
         private readonly int capacity;
         private List<T> list;
@@ -35,6 +37,40 @@
             list.Add(item); return true;
         }
 
+        public IEnumerator<T> GetEnumerator()
+        {
+            foreach (var item in list)
+            {
+                //....... 
+
+                yield return item;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
     }
+
+    //public interface T1
+    //{
+    //    void Print();
+    //}
+    //public interface T2
+    //{
+    //    void Print();
+    //}
+
+    //public class Test : T1, T2
+    //{
+    //    public void Print()
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+
+    //    void T1.Print()
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+    //}
 }
+
