@@ -55,9 +55,32 @@ internal class Game
                 Move(Direction.North);
                 break; 
             case ConsoleKey.DownArrow:
-                Move(Direction.South);
+                Move(Direction.South); 
+                break;
+            case ConsoleKey.P:
+                 PickUp();
                 break;
         }
+    }
+
+    private void PickUp()
+    {
+        if (hero.BackPack.IsFull)
+        {
+            Console.WriteLine("Backpack is full");
+            return;
+        }
+
+        var items = hero.Cell.Items;
+        var item = items.FirstOrDefault();
+        if (item is null) return;
+
+        if (hero.BackPack.Add(item))
+        {
+            Console.WriteLine($"Hero pick up {item}");
+            items.Remove(item);
+        }
+
     }
 
     private void Move(Position movement)
