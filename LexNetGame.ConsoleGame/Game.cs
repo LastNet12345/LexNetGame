@@ -69,34 +69,10 @@ internal class Game
 
     private void DrawMap()
     {
-           Console.Clear();
+        ConsoleUI.Clear();
+        ConsoleUI.Draw(map);
 
-        for (int y = 0; y < map.Height; y++)
-        {
-            for (int x = 0; x < map.Width; x++)
-            {
-                Cell? cell = map.GetCell(y, x);
-                ArgumentNullException.ThrowIfNull(cell, nameof(cell));
-                IDrawable drawable = cell;
-
-                drawable = map.Creatures.CreataureAtExtension(cell);
-
-                //foreach (var creature in map.Creatures)
-                //{
-                //    if(creature.Cell == drawable)
-                //    {
-                //        drawable = creature;
-                //        break;
-                //    }
-                //}
-
-                Console.ForegroundColor = drawable.Color;
-                Console.Write(drawable.Symbol);
-            }
-            Console.WriteLine();
-        }
-
-        Console.ForegroundColor = ConsoleColor.White;
+      
     }
 
     private void Initialize()
