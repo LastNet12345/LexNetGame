@@ -5,7 +5,7 @@ namespace LexNetGame.LimitedList
     public class LimitedList<T> : IEnumerable<T> 
     {
         private readonly int capacity;
-        private List<T> list;
+        protected List<T> list;
 
         public int Count => list.Count;
 
@@ -29,7 +29,7 @@ namespace LexNetGame.LimitedList
             list = new List<T>(this.capacity);
         }
 
-        public bool Add(T item)
+        public virtual bool Add(T item)
         {
             ArgumentNullException.ThrowIfNull(item, nameof(item));
 
@@ -47,7 +47,10 @@ namespace LexNetGame.LimitedList
             }
         }
 
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator()// => GetEnumerator();
+        {
+            return GetEnumerator();
+        }
 
     }
 
