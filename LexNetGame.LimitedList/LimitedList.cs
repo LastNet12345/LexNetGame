@@ -37,6 +37,11 @@ namespace LexNetGame.LimitedList
             list.Add(item); return true;
         }
 
+        public void Print(Action<T> action)
+        {
+            list.ForEach(i => action?.Invoke(i));
+        }
+
         public IEnumerator<T> GetEnumerator()
         {
             foreach (var item in list)
