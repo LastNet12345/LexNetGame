@@ -9,9 +9,18 @@ namespace LexNetGame.ConsoleGame.Entities.Creatures
     internal class Creature : IDrawable
     {
         private Cell cell;
+        private int health;
         public string Symbol { get; }
         public ConsoleColor Color { get; protected set; } = ConsoleColor.Green;
-        public int Health { get; }
+        public int Health 
+        { 
+            get => health < 0 ? 0 : health;
+            set => health = value >= MaxHealth ? MaxHealth : value;
+        }
+
+        public bool IsDead => health <= 0;
+        public int Damage { get; protected set; } = 50;
+        public int MaxHealth { get; }
         public Cell Cell 
         {
             get => cell;
@@ -22,7 +31,7 @@ namespace LexNetGame.ConsoleGame.Entities.Creatures
             }
         }
 
-        public Creature(Cell cell, string symbol)
+        public Creature(Cell cell, string symbol, int maxHealth)
         {
             if (string.IsNullOrWhiteSpace(symbol))
             {
@@ -33,6 +42,7 @@ namespace LexNetGame.ConsoleGame.Entities.Creatures
 
             this.cell = cell;
             Symbol = symbol;
+            MaxHealth = maxHealth;
         }
 
     }

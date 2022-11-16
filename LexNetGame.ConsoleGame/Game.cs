@@ -1,5 +1,5 @@
 ﻿
-
+//public delegate void SomeMethod();
 internal class Game
 {
     private Map map = null!;
@@ -43,31 +43,43 @@ internal class Game
     {
         var keyPressed = ConsoleUI.GetKey();
 
-        switch(keyPressed)
+        switch (keyPressed)
         {
             case ConsoleKey.LeftArrow:
                 Move(Direction.West);
-                break; 
+                break;
             case ConsoleKey.RightArrow:
                 Move(Direction.East);
                 break;
             case ConsoleKey.UpArrow:
                 Move(Direction.North);
-                break; 
+                break;
             case ConsoleKey.DownArrow:
-                Move(Direction.South); 
+                Move(Direction.South);
                 break;
-            case ConsoleKey.P:
-                 PickUp();
-                break;
-            case ConsoleKey.I:
-                 Inventory();
-                break;
+                //case ConsoleKey.P:
+                //     PickUp();
+                //    break;
+                //case ConsoleKey.I:
+                //     Inventory();
+                //    break;
         }
+                
+            var actionMeny = new Dictionary<ConsoleKey, Action>
+                {
+                    { ConsoleKey.P, PickUp },
+                    { ConsoleKey.I, Inventory}
+                };
+
+                if(actionMeny.ContainsKey(keyPressed))
+                         actionMeny[keyPressed]?.Invoke();   
+        
     }
 
     private void Inventory()
     {
+        ConsoleUI.AddMessage(hero.BackPack.Count > 0 ? "Inventory:" : "No items");
+
         for (int i = 0; i < hero.BackPack.Count; i++)
         {
             ConsoleUI.AddMessage($"{i + 1}: {hero.BackPack[i]}");
