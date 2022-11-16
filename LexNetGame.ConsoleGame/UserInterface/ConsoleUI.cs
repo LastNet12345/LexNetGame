@@ -47,7 +47,7 @@ namespace LexNetGame.ConsoleGame.UserInterface
 
         internal static void PrintLog()
         {
-            messageLog.Print(m => Console.WriteLine(m));
+            messageLog.Print(m => Console.WriteLine(m + new string(' ', Console.WindowWidth - m.Length)));
             //messageLog.Print(PrintTest);
             //messageLog.Print(m => PrintTest(m));
         }
