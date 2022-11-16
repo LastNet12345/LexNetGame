@@ -59,6 +59,12 @@ namespace LexNetGame.ConsoleGame.UserInterface
         //}
 
         internal static ConsoleKey GetKey() => Console.ReadKey(intercept: true).Key;
-        
+
+        internal static void PrintStats(string stats)
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(stats);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
     }
 }
