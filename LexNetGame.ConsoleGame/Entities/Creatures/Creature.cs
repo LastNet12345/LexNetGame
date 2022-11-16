@@ -21,6 +21,8 @@ namespace LexNetGame.ConsoleGame.Entities.Creatures
         public bool IsDead => health <= 0;
         public int Damage { get; protected set; } = 50;
         public int MaxHealth { get; }
+
+        public Action<string> AddToLog { get; set; } = default!;
         public Cell Cell 
         {
             get => cell;
@@ -44,6 +46,12 @@ namespace LexNetGame.ConsoleGame.Entities.Creatures
             Symbol = symbol;
             MaxHealth = maxHealth;
             Health = maxHealth;
+        }
+
+
+        public void Attack(Creature creature)
+        {
+            AddToLog?.Invoke($"Message to messageLog {creature.Cell.Position.X}");
         }
 
     }

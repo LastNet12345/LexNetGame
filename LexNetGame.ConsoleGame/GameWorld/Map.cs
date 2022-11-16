@@ -1,4 +1,6 @@
 ﻿
+using LexNetGame.ConsoleGame.Entities.Creatures;
+
 internal class Map
 {
     private Cell[,] cells;
@@ -41,5 +43,10 @@ internal class Map
         {
             Creatures.Add(creature);
         }
+    }
+
+    internal Creature? CreatureAt(Cell? cell)
+    {
+        return Creatures.FirstOrDefault(creature => creature.Cell == cell);
     }
 }

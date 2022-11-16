@@ -1,5 +1,7 @@
 ﻿
 //public delegate void SomeMethod();
+using System.Diagnostics;
+
 internal class Game
 {
     private Map map = null!;
@@ -125,6 +127,9 @@ internal class Game
         Position newPosition = hero.Cell.Position + movement;
         Cell? newCell = map.GetCell(newPosition);
 
+        var opponent = map.CreatureAt(newCell);
+        if(opponent is not null) hero.Attack(opponent);
+
         if (newCell is not null)
         {
             hero.Cell = newCell;
@@ -160,13 +165,17 @@ internal class Game
         map.Place(new Goblin(RCell(), 200));
 
 
-        map.GetCell(1, 1).Items.Add(Item.Coin());
-        map.GetCell(1, 1).Items.Add(Item.Coin());
-        map.GetCell(1, 1).Items.Add(Item.Stone());
+        //map.GetCell(1, 1).Items.Add(Item.Coin());
+        //map.GetCell(1, 1).Items.Add(Item.Coin());
+        //map.GetCell(1, 1).Items.Add(Item.Stone());
         RCell().Items.Add(Item.Coin());
         RCell().Items.Add(Item.Coin());
         RCell().Items.Add(Item.Stone());
         RCell().Items.Add(Item.Stone());
+
+       // map.Creatures.ForEach(c => c.AddToLog = Console.WriteLine);
+        map.Creatures.ForEach(c => c.AddToLog += ConsoleUI.AddMessage);
+        map.Creatures.ForEach(c => c.AddToLog += (m) => Debug.WriteLine(m));
 
         Cell RCell()
         {
