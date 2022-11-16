@@ -64,16 +64,16 @@ internal class Game
                 //     Inventory();
                 //    break;
         }
-                
-            var actionMeny = new Dictionary<ConsoleKey, Action>
+
+        var actionMeny = new Dictionary<ConsoleKey, Action>
                 {
                     { ConsoleKey.P, PickUp },
                     { ConsoleKey.I, Inventory}
                 };
 
-                if(actionMeny.ContainsKey(keyPressed))
-                         actionMeny[keyPressed]?.Invoke();   
-        
+        if (actionMeny.ContainsKey(keyPressed))
+            actionMeny[keyPressed]?.Invoke();
+
     }
 
     private void Inventory()
@@ -117,7 +117,7 @@ internal class Game
     {
         ConsoleUI.Clear();
         ConsoleUI.Draw(map);
-        ConsoleUI.PrintStats($"Health {hero.Health}");
+        ConsoleUI.PrintStats($"Health {hero.Health}, Enemys: {map.Creatures.Count -1}");
         ConsoleUI.PrintLog();
     }
 
@@ -125,18 +125,37 @@ internal class Game
     {
         //ToDo read from config
         map = new Map(width: 10, height: 10);
+        var r = new Random();
 
         var heroCell = map.GetCell(0, 0);
         ArgumentNullException.ThrowIfNull(heroCell, nameof(heroCell));
         hero = new Hero(heroCell);
         map.Creatures.Add(hero);
 
-        map.Place(new Orc(map.GetCell(3, 7)!, 120));
-        map.Place(new Orc(map.GetCell(2, 8)!, 120));
-        map.Place(new Troll(map.GetCell(1, 4)!, 160));
-        map.Place(new Troll(map.GetCell(1, 4)!, 160));
+        map.Place(new Orc(RCell(), 120));
+        map.Place(new Orc(RCell(), 120));
+        map.Place(new Troll(RCell(), 160));
+        map.Place(new Troll(RCell(), 160));
+        map.Place(new Goblin(RCell(), 200));
+        map.Place(new Goblin(RCell(), 200));
 
-        map.GetCell(2, 4)?.Items.Add(Item.Coin());
-        map.GetCell(3, 7)?.Items.Add(Item.Stone());
+        RCell().Items.Add(Item.Coin());
+        RCell().Items.Add(Item.Coin());
+        RCell().Items.Add(Item.Stone());
+        RCell().Items.Add(Item.Stone());
+
+        Cell RCell()
+        {
+            var width = r.Next(0, map.Width);
+            var height = r.Next(0, map.Height);
+
+            var cell = map.GetCell(width, height);
+
+            ArgumentNullException.ThrowIfNull(cell, nameof(cell));
+
+            return cell;
+        }
+
     }
+
 }
