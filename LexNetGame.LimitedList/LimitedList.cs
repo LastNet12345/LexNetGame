@@ -49,6 +49,12 @@ namespace LexNetGame.LimitedList
             //}
         }
 
+        public bool Remove(T item) => list.Remove(item);
+        //{
+        //    return list.Remove(item);
+        //}
+
+
         public IEnumerator<T> GetEnumerator()
         {
             foreach (var item in list)
