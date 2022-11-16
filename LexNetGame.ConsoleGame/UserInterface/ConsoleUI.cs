@@ -48,7 +48,15 @@ namespace LexNetGame.ConsoleGame.UserInterface
         internal static void PrintLog()
         {
             messageLog.Print(m => Console.WriteLine(m));
+            //messageLog.Print(PrintTest);
+            //messageLog.Print(m => PrintTest(m));
         }
+
+        //Demo
+        //private static void PrintTest(string m)
+        //{
+        //    Console.WriteLine(m);
+        //}
 
         internal static ConsoleKey GetKey() => Console.ReadKey(intercept: true).Key;
         

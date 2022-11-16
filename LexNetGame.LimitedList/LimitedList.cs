@@ -40,6 +40,13 @@ namespace LexNetGame.LimitedList
         public void Print(Action<T> action)
         {
             list.ForEach(i => action?.Invoke(i));
+
+            //list.ForEach(action);
+
+            //foreach (var i in list)
+            //{
+            //    action?.Invoke(i);
+            //}
         }
 
         public IEnumerator<T> GetEnumerator()
