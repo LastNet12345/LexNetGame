@@ -125,9 +125,16 @@ internal class Game
     {
         //ToDo read from config
         map = new Map(width: 10, height: 10);
-        var heroCell = map.GetCell(0, 0)!;
+
+        var heroCell = map.GetCell(0, 0);
+        ArgumentNullException.ThrowIfNull(heroCell, nameof(heroCell));
         hero = new Hero(heroCell);
         map.Creatures.Add(hero);
+
+        map.Place(new Orc(map.GetCell(3, 7)!, 120));
+        map.Place(new Orc(map.GetCell(2, 8)!, 120));
+        map.Place(new Troll(map.GetCell(1, 4)!, 160));
+        map.Place(new Troll(map.GetCell(1, 4)!, 160));
 
         map.GetCell(2, 4)?.Items.Add(Item.Coin());
         map.GetCell(3, 7)?.Items.Add(Item.Stone());

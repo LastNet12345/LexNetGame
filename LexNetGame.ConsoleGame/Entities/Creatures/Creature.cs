@@ -43,6 +43,7 @@ namespace LexNetGame.ConsoleGame.Entities.Creatures
             this.cell = cell;
             Symbol = symbol;
             MaxHealth = maxHealth;
+            Health = maxHealth;
         }
 
     }

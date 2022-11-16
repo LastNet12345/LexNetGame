@@ -33,4 +33,12 @@ internal class Map
     {
         return GetCell(newPosition.Y, newPosition.X);
     }
+
+    internal void Place(Creature creature)
+    {
+       // if (Creatures.Where(c => c.Cell == creature.Cell).Count() >= 1) return;
+       if(Creatures.FirstOrDefault(c => c.Cell == creature.Cell) != null) return;
+        
+       Creatures.Add(creature);
+    }
 }
