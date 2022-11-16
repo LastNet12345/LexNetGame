@@ -2,7 +2,7 @@
 internal class Map
 {
     private Cell[,] cells;
-    public int Width {get;}
+    public int Width { get; }
     public int Height { get; }
     public List<Creature> Creatures { get; } = new List<Creature>();
 
@@ -20,7 +20,7 @@ internal class Map
                 cells[y, x] = new Cell(new Position(y, x));
             }
         }
-       
+
     }
 
     [return: MaybeNull]
@@ -36,9 +36,10 @@ internal class Map
 
     internal void Place(Creature creature)
     {
-       // if (Creatures.Where(c => c.Cell == creature.Cell).Count() >= 1) return;
-       if(Creatures.FirstOrDefault(c => c.Cell == creature.Cell) != null) return;
-        
-       Creatures.Add(creature);
+        // if (Creatures.Where(c => c.Cell == creature.Cell).Count() >= 1) return;
+        if (Creatures.FirstOrDefault(c => c.Cell == creature.Cell) == null)
+        {
+            Creatures.Add(creature);
+        }
     }
 }
