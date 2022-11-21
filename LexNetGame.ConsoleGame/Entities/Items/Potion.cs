@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LexNetGame.ConsoleGame.Entities.Items
 {
-    internal class Potion : Item
+    internal class Potion : Item, IPotion
     {
         public Potion(string symbol, ConsoleColor color, string name) : base(symbol, color, name)
         {
