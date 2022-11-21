@@ -10,8 +10,16 @@ namespace LexNetGame.ConsoleGame.Entities.Creatures
     {
         private Cell cell;
         private int health;
+        private ConsoleColor color;
+        private string name => this.GetType().Name;
+
         public string Symbol { get; }
-        public ConsoleColor Color { get; protected set; } = ConsoleColor.Green;
+        public ConsoleColor Color 
+        {
+            get => IsDead ? ConsoleColor.Gray : color;
+            protected set => color = value; 
+
+        }
         public int Health 
         { 
             get => health < 0 ? 0 : health;
@@ -46,12 +54,24 @@ namespace LexNetGame.ConsoleGame.Entities.Creatures
             Symbol = symbol;
             MaxHealth = maxHealth;
             Health = maxHealth;
+            color = ConsoleColor.Green;
         }
 
 
-        public void Attack(Creature creature)
+        public void Attack(Creature target)
         {
-            AddToLog?.Invoke($"Message to messageLog {creature.Cell.Position.X}");
+            //AddToLog?.Invoke($"Message to messageLog {creature.Cell.Position.X}");
+            if(target.IsDead || this.IsDead) return;
+
+            var attacker = this.name;
+
+            target.Health -= Damage;
+
+            AddToLog?.Invoke($"The {attacker} attacks the {target.name} for {this.Damage}");
+
+            if (target.IsDead)
+                AddToLog?.Invoke($"The {target.name} is dead");
+
         }
 
     }

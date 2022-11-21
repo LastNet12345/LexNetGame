@@ -6,6 +6,7 @@ internal class Game
 {
     private Map map = null!;
     private Hero hero = null!;
+    private bool gameInProgress;
 
     public Game()
     {
@@ -19,7 +20,7 @@ internal class Game
 
     private void Play()
     {
-        bool gameInProgress = true;
+        gameInProgress = true;
 
         do
         {
@@ -127,8 +128,14 @@ internal class Game
         Position newPosition = hero.Cell.Position + movement;
         Cell? newCell = map.GetCell(newPosition);
 
-        var opponent = map.CreatureAt(newCell);
-        if(opponent is not null) hero.Attack(opponent);
+        Creature? opponent = map.CreatureAt(newCell);
+        if(opponent is not null)
+        {
+            hero.Attack(opponent);
+            opponent.Attack(hero);
+        }
+
+        gameInProgress = !hero.IsDead;
 
         if (newCell is not null)
         {
@@ -142,7 +149,7 @@ internal class Game
     {
         ConsoleUI.Clear();
         ConsoleUI.Draw(map);
-        ConsoleUI.PrintStats($"Health {hero.Health}, Enemys: {map.Creatures.Count -1}");
+        ConsoleUI.PrintStats($"Health {hero.Health}, Enemys: {map.Creatures.Where(c => !c.IsDead).Count()  - 1}  ");
         ConsoleUI.PrintLog();
     }
 
@@ -173,9 +180,12 @@ internal class Game
         RCell().Items.Add(Item.Stone());
         RCell().Items.Add(Item.Stone());
 
-       // map.Creatures.ForEach(c => c.AddToLog = Console.WriteLine);
-        map.Creatures.ForEach(c => c.AddToLog += ConsoleUI.AddMessage);
-        map.Creatures.ForEach(c => c.AddToLog += (m) => Debug.WriteLine(m));
+        // map.Creatures.ForEach(c => c.AddToLog = Console.WriteLine);
+        map.Creatures.ForEach(c =>
+        {
+            c.AddToLog = ConsoleUI.AddMessage;
+           // c.AddToLog += (m) => Debug.WriteLine(m);
+        });
 
         Cell RCell()
         {
