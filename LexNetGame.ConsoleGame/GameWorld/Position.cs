@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LexNetGame.ConsoleGame.GameWorld
 {
-    internal struct Position
+    public struct Position
     {
         public int Y { get; }
         public int X { get; }

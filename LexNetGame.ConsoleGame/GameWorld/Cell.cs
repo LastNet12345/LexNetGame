@@ -1,7 +1,7 @@
 ﻿
 using LexNetGame.ConsoleGame.GameWorld;
 
-internal class Cell : IDrawable
+public class Cell : IDrawable
 {
     public string Symbol => ". ";
     public ConsoleColor Color { get; }

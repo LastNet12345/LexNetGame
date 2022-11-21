@@ -1,4 +1,4 @@
-﻿internal class Item : IDrawable
+﻿public class Item : IDrawable
 {
     private readonly string name;
 

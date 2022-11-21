@@ -1,7 +1,7 @@
 ﻿
 using LexNetGame.ConsoleGame.Entities.Creatures;
 
-internal class Map
+public class Map
 {
     private Cell[,] cells;
     public int Width { get; }
