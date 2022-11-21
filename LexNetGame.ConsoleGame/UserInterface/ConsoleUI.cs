@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace LexNetGame.ConsoleGame.UserInterface
 {
-    public class ConsoleUI
+    public class ConsoleUI : IUI
     {
         private static MessageLog<string> messageLog = new(6);
 
         public void AddMessage(string message) => messageLog.Add(message);
-        
+
 
         public void Clear()
         {
@@ -45,7 +45,7 @@ namespace LexNetGame.ConsoleGame.UserInterface
         //    return Console.ReadKey(intercept: true).Key;
         //} 
 
-       public void PrintLog()
+        public void PrintLog()
         {
             messageLog.Print(m => Console.WriteLine(m + new string(' ', Console.WindowWidth - m.Length)));
             //messageLog.Print(PrintTest);
@@ -60,7 +60,7 @@ namespace LexNetGame.ConsoleGame.UserInterface
 
         public ConsoleKey GetKey() => Console.ReadKey(intercept: true).Key;
 
-       public void PrintStats(string stats)
+        public void PrintStats(string stats)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(stats);

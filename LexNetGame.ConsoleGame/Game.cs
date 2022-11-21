@@ -8,10 +8,11 @@ internal class Game
     private Map map = null!;
     private Hero hero = null!;
     private bool gameInProgress;
-    private ConsoleUI ui = new ConsoleUI();
+    private readonly IUI ui;
 
-    public Game()
+    public Game(ConsoleUI ui)
     {
+        this.ui = ui;
     }
 
     internal void Run()
