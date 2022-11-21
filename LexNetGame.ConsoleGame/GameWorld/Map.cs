@@ -1,7 +1,8 @@
-﻿
-using LexNetGame.ConsoleGame.Entities.Creatures;
+﻿using LexNetGame.ConsoleGame.Entities.Creatures;
 
-public class Map
+namespace LexNetGame.ConsoleGame.GameWorld;
+
+public class Map : IMap
 {
     private Cell[,] cells;
     public int Width { get; }
@@ -26,17 +27,17 @@ public class Map
     }
 
     [return: MaybeNull]
-    internal Cell GetCell(int y, int x)
+    public Cell GetCell(int y, int x)
     {
-        return (x < 0 || x >= Width || y < 0 || y >= Height) ? null : cells[y, x];
+        return x < 0 || x >= Width || y < 0 || y >= Height ? null : cells[y, x];
     }
 
-    internal Cell? GetCell(Position newPosition)
+    public Cell? GetCell(Position newPosition)
     {
         return GetCell(newPosition.Y, newPosition.X);
     }
 
-    internal void Place(Creature creature)
+    public void Place(Creature creature)
     {
         // if (Creatures.Where(c => c.Cell == creature.Cell).Count() >= 1) return;
         if (Creatures.FirstOrDefault(c => c.Cell == creature.Cell) == null)
@@ -45,7 +46,7 @@ public class Map
         }
     }
 
-    internal Creature? CreatureAt(Cell? cell)
+    public Creature? CreatureAt(Cell? cell)
     {
         return Creatures.FirstOrDefault(creature => creature.Cell == cell);
     }

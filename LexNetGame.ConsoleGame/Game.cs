@@ -5,12 +5,12 @@ using System.Diagnostics;
 
 internal class Game
 {
-    private Map map = null!;
+    private IMap map = null!;
     private Hero hero = null!;
     private bool gameInProgress;
     private readonly IUI ui;
 
-    public Game(ConsoleUI ui)
+    public Game(IUI ui)
     {
         this.ui = ui;
     }
