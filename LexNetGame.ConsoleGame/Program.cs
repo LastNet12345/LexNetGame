@@ -1,34 +1,30 @@
 ﻿
+using Microsoft.Extensions.Configuration;
 
+IConfiguration config = new ConfigurationBuilder()
+                                    .SetBasePath(Environment.CurrentDirectory)
+                                    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                                    .Build();
 
-//var list = new List<string>();
-//string x = "Hej på dig";
+var ui = config.GetSection("game:ui").Value;
 
-//foreach (var item in x)
+var x = config.GetSection("game:mapsettings:x").Value;
+var mapsettings = config.GetSection("game:mapsettings").GetChildren();
+
+//IUI implementation;
+
+//switch (ui)
 //{
-//    Console.WriteLine(item);
+//    case "console":
+//        implementation = new ConsoleUI();
+//        break;
+//    default:
+//        break;
 //}
 
-//list.Add("Hej");
-//var first = list[0];
-
-//foreach (var item in list)
-//{
-//    Console.WriteLine(item);
-//}
-
-//var limitedList = new LimitedList<string>(5);
-//limitedList.Add("Hej");
-//var first2 = limitedList[0];
-
-//foreach (var item in limitedList)
-//{
-//    Console.WriteLine(item);
-//}
 
 var game = new Game(new ConsoleUI());
 game.Run();
-
 Console.WriteLine("Thanks for playing");
 Console.ReadLine();
 
