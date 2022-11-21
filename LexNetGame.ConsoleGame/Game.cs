@@ -118,7 +118,8 @@ internal class Game
 
         if(item is IUsable usable)
         {
-            usable.Use(hero);
+           // usable.Use(hero);
+            usable.Use(hero, c => c.Health += 25);
             hero.Cell.Items.Remove(item);
             ConsoleUI.AddMessage($"Hero use the {item}");
             return;
