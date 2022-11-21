@@ -1,5 +1,6 @@
 ﻿
 //public delegate void SomeMethod();
+using LexNetGame.ConsoleGame.Entities.Items;
 using System.Diagnostics;
 
 internal class Game
@@ -115,6 +116,14 @@ internal class Game
         var item = items.FirstOrDefault();
         if (item is null) return;
 
+        if(item is Potion healthPotion)
+        {
+            healthPotion.Use(hero);
+            hero.Cell.Items.Remove(item);
+            ConsoleUI.AddMessage($"Hero use the {item}");
+            return;
+        }
+
         if (hero.BackPack.Add(item))
         {
             ConsoleUI.AddMessage($"Hero pick up {item}");
@@ -179,6 +188,9 @@ internal class Game
         RCell().Items.Add(Item.Coin());
         RCell().Items.Add(Item.Stone());
         RCell().Items.Add(Item.Stone());
+        RCell().Items.Add(Potion.HealthPotion());
+        RCell().Items.Add(Potion.HealthPotion());
+        RCell().Items.Add(Potion.HealthPotion());
 
         // map.Creatures.ForEach(c => c.AddToLog = Console.WriteLine);
         map.Creatures.ForEach(c =>
