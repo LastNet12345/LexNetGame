@@ -23,6 +23,7 @@ internal class StartUp
     {
         services.AddSingleton<IConfiguration>(configuration);
         services.AddSingleton<IUI, ConsoleUI>();
+        services.AddSingleton<IMap, Map>();
         services.AddSingleton<Game>();
 
     }

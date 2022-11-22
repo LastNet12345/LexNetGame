@@ -9,6 +9,12 @@ namespace LexNetGame.ConsoleGame.UserInterface
     public class ConsoleUI : IUI
     {
         private static MessageLog<string> messageLog = new(6);
+        private readonly IMap map;
+
+        public ConsoleUI(IMap map)
+        {
+            this.map = map;
+        }
 
         public void AddMessage(string message) => messageLog.Add(message);
 
@@ -19,7 +25,7 @@ namespace LexNetGame.ConsoleGame.UserInterface
             Console.SetCursorPosition(0, 0);
         }
 
-        public void Draw(IMap map)
+        public void Draw()
         {
             for (int y = 0; y < map.Height; y++)
             {
