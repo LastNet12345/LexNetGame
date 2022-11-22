@@ -25,6 +25,8 @@ internal class StartUp
         services.AddSingleton<IUI, ConsoleUI>();
         services.AddSingleton<IMap, Map>();
         services.AddSingleton<Game>();
+        services.AddSingleton<ILimitedList<string>>(new MessageLog<string>(6));
+       // services.AddSingleton<ILimitedList<Item>>(new LimitedList<Item>(3));
 
     }
 

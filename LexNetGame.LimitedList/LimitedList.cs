@@ -2,7 +2,7 @@
 
 namespace LexNetGame.LimitedList
 {
-    public class LimitedList<T> : IEnumerable<T> 
+    public class LimitedList<T> :  ILimitedList<T>
     {
         private readonly int capacity;
         protected List<T> list;

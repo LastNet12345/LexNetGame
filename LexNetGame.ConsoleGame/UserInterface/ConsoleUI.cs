@@ -8,12 +8,13 @@ namespace LexNetGame.ConsoleGame.UserInterface
 {
     public class ConsoleUI : IUI
     {
-        private static MessageLog<string> messageLog = new(6);
+        private ILimitedList<string> messageLog;// = new(6);
         private readonly IMap map;
 
-        public ConsoleUI(IMap map)
+        public ConsoleUI(IMap map, ILimitedList<string> messagelog)
         {
             this.map = map;
+            messageLog = messagelog;
         }
 
         public void AddMessage(string message) => messageLog.Add(message);
