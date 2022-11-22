@@ -1,17 +1,17 @@
 ﻿
 using Microsoft.Extensions.Configuration;
 
-IConfiguration config = new ConfigurationBuilder()
-                                    .SetBasePath(Environment.CurrentDirectory)
-                                    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                                    .Build();
+//IConfiguration config = new ConfigurationBuilder()
+//                                    .SetBasePath(Environment.CurrentDirectory)
+//                                    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+//                                    .Build();
 
-var ui = config.GetSection("game:ui").Value;
+//var ui = config.GetSection("game:ui").Value;
 
-var x = config.GetSection("game:mapsettings:x").Value;
-var mapsettings = config.GetSection("game:mapsettings").GetChildren();
+//var x = config.GetSection("game:mapsettings:x").Value;
+//var mapsettings = config.GetSection("game:mapsettings").GetChildren();
 
-var xx = mapsettings.First(m => m.Key.Equals("x")).Value;
+//var xx = mapsettings.First(m => m.Key.Equals("x")).Value;
 
 //IUI implementation;
 
@@ -25,8 +25,12 @@ var xx = mapsettings.First(m => m.Key.Equals("x")).Value;
 //}
 
 
-var game = new Game(new ConsoleUI(), config);
-game.Run();
+//var game = new Game(new ConsoleUI(), config);
+//game.Run();
+
+var startup = new StartUp();
+startup.SetUp();
+
 
 Console.WriteLine("Thanks for playing");
 Console.ReadLine();
