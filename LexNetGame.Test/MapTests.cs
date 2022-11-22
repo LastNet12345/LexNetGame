@@ -25,17 +25,32 @@ namespace LexNetGame.Test
         
 
         //With Class and InterFace
-        [Fact]
+        //[Fact]
+        //public void Map_Constructor_SetCorrectWidth()
+        //{
+        //    const int expected = 10;
+
+        //    var mockConfig = new Mock<IConfiguration>();
+        //    var getMapSizeMock = new Mock<IGetMapSize>();
+
+        //    getMapSizeMock.Setup(m => m.GetMapSizeFor(mockConfig.Object, It.IsAny<string>())).Returns(expected);
+        //    TestExtensions.Implementation = getMapSizeMock.Object;
+
+        //    var map = new Map(mockConfig.Object);
+
+        //    Assert.Equal(expected, map.Width);
+        //}
+     
+        //With Func
+       [Fact]
         public void Map_Constructor_SetCorrectWidth()
         {
             const int expected = 10;
 
             var mockConfig = new Mock<IConfiguration>();
-            var getMapSizeMock = new Mock<IGetMapSize>();
 
-            getMapSizeMock.Setup(m => m.GetMapSizeFor(mockConfig.Object, It.IsAny<string>())).Returns(expected);
-            TestExtensions.Implementation = getMapSizeMock.Object;
-
+            ExtensionTestFunc.Implementation = (c, v) => expected;
+          
             var map = new Map(mockConfig.Object);
 
             Assert.Equal(expected, map.Width);
