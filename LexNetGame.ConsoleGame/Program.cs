@@ -11,6 +11,8 @@ var ui = config.GetSection("game:ui").Value;
 var x = config.GetSection("game:mapsettings:x").Value;
 var mapsettings = config.GetSection("game:mapsettings").GetChildren();
 
+var xx = mapsettings.First(m => m.Key.Equals("x")).Value;
+
 //IUI implementation;
 
 //switch (ui)
@@ -23,8 +25,9 @@ var mapsettings = config.GetSection("game:mapsettings").GetChildren();
 //}
 
 
-var game = new Game(new ConsoleUI());
+var game = new Game(new ConsoleUI(), config);
 game.Run();
+
 Console.WriteLine("Thanks for playing");
 Console.ReadLine();
 

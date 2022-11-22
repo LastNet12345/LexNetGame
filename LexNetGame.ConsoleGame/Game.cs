@@ -1,18 +1,23 @@
 ﻿
 //public delegate void SomeMethod();
 using LexNetGame.ConsoleGame.Entities.Items;
+using Microsoft.Extensions.Configuration;
 using System.Diagnostics;
 
 internal class Game
 {
-    private IMap map = null!;
+    private IMap map;
     private Hero hero = null!;
     private bool gameInProgress;
     private readonly IUI ui;
+    private readonly IConfiguration config;
 
-    public Game(IUI ui)
+    public Game(IUI ui, IConfiguration config)
     {
         this.ui = ui;
+        this.config = config;
+
+        map = new Map(config);
     }
 
     internal void Run()
@@ -167,8 +172,10 @@ internal class Game
 
     private void Initialize()
     {
-        //ToDo read from config
-        map = new Map(width: 10, height: 10);
+        //var width = config.GetMapSizeFor("x");
+        //var height = config.GetMapSizeFor("y");
+
+        //map = new Map(width, height);
         var r = new Random();
 
         var heroCell = map.GetCell(0, 0);
@@ -207,7 +214,7 @@ internal class Game
             var width = r.Next(0, map.Width);
             var height = r.Next(0, map.Height);
 
-            var cell = map.GetCell(width, height);
+            var cell = map.GetCell(height, width);
 
             ArgumentNullException.ThrowIfNull(cell, nameof(cell));
 
