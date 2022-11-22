@@ -1,5 +1,7 @@
 ﻿using LexNetGame.ConsoleGame.Entities.Creatures;
+using LexNetGame.ConsoleGame.Services;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace LexNetGame.ConsoleGame.GameWorld;
 
@@ -10,10 +12,12 @@ public class Map : IMap
     public int Height { get; }
     public List<Creature> Creatures { get; } = new List<Creature>();
 
-    public Map(IConfiguration config)
+   // public Map(IConfiguration config, IMapSettings mapSettings, IOptions<MapSettings> options)
+    public Map(IMapService mapService)
     {
-        var width = config.GetMapSizeFor("x");
-        var height = config.GetMapSizeFor("y");
+        //var width = config.GetMapSizeFor("x");
+        //var height = config.GetMapSizeFor("y");
+        var (width, height) = mapService.GetMap();
 
         Width = width;
         Height = height;
